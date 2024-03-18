@@ -1,0 +1,16 @@
+{
+  "name": "math",
+  "version": "1.0.0",
+  "description": "study arquives\r repository for exercices \r P 1.13",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node P1.13_model.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}
