@@ -1,18 +1,28 @@
-/* P1.13 Modele, utilizando orientação a objetos, um usuário de um sistema que tenha
-preenchido as seguintes informações em uma interface de cadastro: nome, ano de nascimento,
-cpf e gênero. Esse usuário deve possuir um método chamado equals, que compara uma instância
-da classe com outra passada como argumento para o método equals e outro método chamado
-speak_name que retorna a string representada no nome do usuário. Demonstre a execução de
-um programa que faça uso dessa classe, exibindo resultados no console.*/
 
-import { Usuario as User } from "./Pmath_view";
 
-    const user1 = new User("Marcelo", 9999, "987.654.321-00", "Masculino");
-    const user2 = new User("Marcelo", 9999, "987.654.321-00", "Masculino");
+export class Usuario {
+    nome: string;
+    ano_nascimento: number;
+    cpf: string;
+    genero: string;
 
-console.log(user1.speak_name());
-console.log(user2.equals(user1)); 
+    constructor(nome: string, ano_nascimento: number, cpf: string, genero: string) {
+        this.nome = nome;
+        this.ano_nascimento = ano_nascimento;
+        this.cpf = cpf;
+        this.genero = genero;
+    }
 
-/* const user3 = new User("João", 1990, "123.456.789-00", "Masculino");
-console.log(user3.equals(user1)); */ 
+    equals(outroUsuario: Usuario): string {
+        return ( `${this.nome === outroUsuario.nome &&
+               this.ano_nascimento === outroUsuario.ano_nascimento &&
+               this.cpf === outroUsuario.cpf &&
+               this.genero === outroUsuario.genero} `)
+    }
 
+    speak_name(): string {
+        return `Meu nome é ${this.nome}`;
+    }
+}
+
+   
