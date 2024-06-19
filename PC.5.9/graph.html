@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções Matemáticas com Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Gráficos das Funções Matemáticas</h2>
+    <canvas id="trigonometric-chart" width="400" height="400"></canvas>
+    <canvas id="exponential-chart" width="400" height="400"></canvas>
+    <canvas id="logarithmic-chart" width="400" height="400"></canvas>
+    <canvas id="cubic-chart" width="400" height="400"></canvas>
+    <canvas id="quadratic-chart" width="400" height="400"></canvas>
+    <canvas id="linear-chart" width="400" height="400"></canvas>
+
+    <script>
+        // Função para gerar dados
+        function generateData(func, range, step = 0.1) {
+            const data = [];
+            for (let x = range[0]; x <= range[1]; x += step) {
+                data.push({ x: x, y: func(x) });
+            }
+            return data;
+        }
+
+        // Configurações dos gráficos
+        const config = {
+            type: 'scatter',
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    }
+                }
+            }
+        };
+
+        // Funções
+        const functions = {
+            sine: x => Math.sin(x),
+            cosine: x => Math.cos(x),
+            exponential: (x, a = 1) => a * Math.exp(x),
+            logarithmic: (x, a = 1) => a * Math.log(x),
+            cubic: (x, a = 1, b = 0, c = 0, d = 0) => a * x**3 + b * x**2 + c * x + d,
+            quadratic: (x, a = 1, b = 0, c = 0) => a * x**2 + b * x + c,
+            linear: (x, a = 1, b = 0) => a * x + b
+        };
+
+        // Dados para cada gráfico
+        const sineData = generateData(functions.sine, [-2 * Math.PI, 2 * Math.PI]);
+        const cosineData = generateData(functions.cosine, [-2 * Math.PI, 2 * Math.PI]);
+        const exponentialData = generateData(x => functions.exponential(x, 1), [-2, 2]);
+        const logarithmicData = generateData(x => functions.logarithmic(x, 1), [0.1, 2]);
+        const cubicData = generateData(x => functions.cubic(x, 1, 0, 0, 0), [-2, 2]);
+        const quadraticData = generateData(x => functions.quadratic(x, 1, 0, 0), [-2, 2]);
+        const linearData = generateData(x => functions.linear(x, 1, 0), [-2, 2]);
+
+        // Criar gráficos
+        new Chart(document.getElementById('trigonometric-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Sine Function',
+                    data: sineData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }, {
+                    label: 'Cosine Function',
+                    data: cosineData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('exponential-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Exponential Function',
+                    data: exponentialData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('logarithmic-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Logarithmic Function',
+                    data: logarithmicData,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('cubic-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Cubic Function',
+                    data: cubicData,
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('quadratic-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Quadratic Function',
+                    data: quadraticData,
+                    borderColor: 'rgba(255, 205, 86, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('linear-chart'), {
+            ...config,
+            data: {
+                datasets: [{
+                    label: 'Linear Function',
+                    data: linearData,
+                    borderColor: 'rgba(201, 203, 207, 1)',
+                    borderWidth: 1,
+                    showLine: true,
+                    fill: false
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
