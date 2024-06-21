@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+    // outras opções de configuração
+  }
+}
